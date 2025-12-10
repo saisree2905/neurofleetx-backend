@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "69393a880db46d5e3afaa73e",
+    "userId": "69392f3fa8f3ee53fbdadf79",
+    "tripId": "6939395e0db46d5e3afaa734",
+    "busId": "693938850db46d5e3afaa72c",
+    "seatNo": "01",
+    "fare": 150,
+    "paymentStatus": "refunded",
+    "paymentId": null,
+    "status": "cancelled",
+    "bookedAt": "2025-12-10T09:16:56.205Z",
+    "createdAt": "2025-12-10T09:16:56.207Z",
+    "updatedAt": "2025-12-10T09:19:44.451Z",
+    "__v": 0
+  }
+]
