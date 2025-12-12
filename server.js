@@ -1,14 +1,27 @@
-require("dotenv").config();
-const app = require("./src/app");
-const connectDB = require("./src/config/db");
+require('dotenv').config();   // load .env
+const express = require("express");
+const connectDB = require("./config/db");
 
-const PORT = process.env.PORT || 4000;
+const app = express();
+app.use(express.json());
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`🚀 Server running on port ${PORT}`);
-    });
-}).catch(err => {
-    console.error("❌ Failed to connect DB:", err);
-    process.exit(1);
+// 1️⃣ Connect to MongoDB
+connectDB();
+
+// 2️⃣ Example API route
+app.get("/", (req, res) => {
+  res.send("API is running");
 });
+
+
+// Routes
+app.use("/api", require("./src/routes/userRoutes"));
+
+
+// 3️⃣ Start server
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+
