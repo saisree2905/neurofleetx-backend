@@ -1,27 +1,25 @@
-require('dotenv').config();   // load .env
-const express = require("express");
-const connectDB = require("./config/db");
 
+const express = require('express');
 const app = express();
-app.use(express.json());
 
 // 1️⃣ Connect to MongoDB
+require('dotenv').config();
+const connectDB = require("./config/db");
+
+app.use(express.json());
+
 connectDB();
-
-// 2️⃣ Example API route
-app.get("/", (req, res) => {
-  res.send("API is running");
-});
-
 
 // Routes
 app.use("/api", require("./src/routes/userRoutes"));
 
+//2️⃣ Example API route
+app.get('/', (req, res) => {
+  res.send('Root route works!');
+});
 
 // 3️⃣ Start server
 const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-
-
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
