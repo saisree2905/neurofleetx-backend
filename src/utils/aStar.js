@@ -1,15 +1,10 @@
 function heuristic(a, b) {
-  if (!a || !b) return 0;
   const dx = a.lat - b.lat;
   const dy = a.lng - b.lng;
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-function aStar(graph, start, goal, coords) {
-  if (!graph[start] || !graph[goal]) {
-    throw new Error("Start or Goal node not found in graph");
-  }
-
+function astar(graph, start, end, coords) {
   const openSet = new Set([start]);
   const cameFrom = {};
 
@@ -22,32 +17,43 @@ function aStar(graph, start, goal, coords) {
   });
 
   gScore[start] = 0;
-  fScore[start] = heuristic(coords[start], coords[goal]);
+  fScore[start] = heuristic(coords[start], coords[end]);
 
   while (openSet.size > 0) {
-    let current = [...openSet].reduce((a, b) =>
-      fScore[a] < fScore[b] ? a : b
-    );
+    let current = null;
+    let lowest = Infinity;
 
-    if (current === goal) {
-      const path = [];
-      while (current) {
-        path.unshift(current);
-        current = cameFrom[current];
+    for (let node of openSet) {
+      if (fScore[node] < lowest) {
+        lowest = fScore[node];
+        current = node;
       }
-      return path;
+    }
+
+    if (current === end) {
+      const path = [];
+      let temp = current;
+      let distance = gScore[current];
+
+      while (temp) {
+        path.unshift(temp);
+        temp = cameFrom[temp];
+      }
+
+      return { path, distance };
     }
 
     openSet.delete(current);
 
     for (let neighbor of graph[current]) {
-      const tempG = gScore[current] + neighbor.distance;
+      const tentativeG = gScore[current] + neighbor.distance;
 
-      if (tempG < gScore[neighbor.node]) {
+      if (tentativeG < gScore[neighbor.node]) {
         cameFrom[neighbor.node] = current;
-        gScore[neighbor.node] = tempG;
+        gScore[neighbor.node] = tentativeG;
         fScore[neighbor.node] =
-          tempG + heuristic(coords[neighbor.node], coords[goal]);
+          tentativeG + heuristic(coords[neighbor.node], coords[end]);
+
         openSet.add(neighbor.node);
       }
     }
@@ -56,4 +62,4 @@ function aStar(graph, start, goal, coords) {
   return null;
 }
 
-module.exports = aStar;
+module.exports = astar;

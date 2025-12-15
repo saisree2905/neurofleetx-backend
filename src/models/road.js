@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const roadSchema = new mongoose.Schema({
-  from: { type: String, required: true },
-  to: { type: String, required: true },
-  distance: { type: Number, required: true },
+  from: String,
+  to: String,
+  distance: Number,
   fromLat: Number,
   fromLng: Number,
   toLat: Number,
