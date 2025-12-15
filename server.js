@@ -13,6 +13,7 @@ connectDB();
 // Routes
 app.use("/api", require("./src/routes/userRoutes"));
 
+
 //2️⃣ Example API route
 app.get('/', (req, res) => {
   res.send('Root route works!');
