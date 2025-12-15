@@ -1,4 +1,4 @@
-/*console.log("SERVER FILE LOADED");
+console.log("SERVER FILE LOADED");
 
 const express = require("express");
 const router = express.Router();
@@ -56,6 +56,8 @@ router.get("/shortest-path", async (req, res) => {
 
 
 module.exports=router;
+
+
 /*src/routes/routePath.js (Temporary)
 const express = require('express');
 const router = express.Router();

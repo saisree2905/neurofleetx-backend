@@ -12,8 +12,8 @@ connectDB();
 
 // Routes
 app.use("/api/buses", require("./src/routes/buses.js"));
-//app.use("/api/routes", require("./src/routes/routePath.js"));
-//app.use("/api/users", require("./src/routes/userRoutes"));
+app.use("/api/routes", require("./src/routes/routePath.js"));
+app.use("/api/users", require("./src/routes/userRoutes"));
 
 //2️⃣ Example API route
 app.get('/test', (req, res) => {

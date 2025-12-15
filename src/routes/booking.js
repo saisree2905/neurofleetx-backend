@@ -1,5 +1,5 @@
 // src/routes/booking.js
-/*const express = require('express');
+const express = require('express');
 const router = express.Router();
 const bookingController = require('../controllers/bookingController');
 const auth = require('../middlewares/auth');
@@ -22,4 +22,4 @@ router.post('/confirm/:ticketId', auth.verifyToken, bookingController.confirmPay
 // cancel ticket (authenticated)
 router.post('/cancel/:ticketId', auth.verifyToken, bookingController.cancelTicket);
 
-module.exports = router;*/
+module.exports = router;

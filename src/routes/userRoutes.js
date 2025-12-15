@@ -1,4 +1,4 @@
-/*const express = require("express");
+const express = require("express");
 const router = express.Router();
 const {
   createUser,
@@ -15,5 +15,5 @@ router.get("/user/:id", getUser);         // Read one
 router.put("/user/:id", updateUser);      // Update
 router.delete("/user/:id", deleteUser);   // Delete
 
-module.exports = router;*/
+module.exports = router;
 
